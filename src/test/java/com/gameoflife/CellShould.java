@@ -12,11 +12,11 @@ public class CellShould {
 
     @BeforeEach
     void setUp() {
-        cell = new Cell();
     }
 
     @Test
-    void have_initial_status() {
-        assertThat(cell.liveStatus(), isA(Cell.CellStatus.class));
+    void start_with_alive_status() {
+        cell = new Cell();
+        assertThat(cell.liveStatus(), is(Cell.CellStatus.ALIVE));
     }
 }
