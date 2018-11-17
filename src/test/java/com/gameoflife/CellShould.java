@@ -43,5 +43,22 @@ public class CellShould {
         assertTrue(cell.isAlive());
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {4, 5, 6, 7, 8})
+    void die_in_contact_with_more_than_3_alive(int numberOfAliveNeighbours) {
+        when(neighbours.numberOfAlive()).thenReturn(numberOfAliveNeighbours);
+        Cell cell = new Cell(true);
+        cell.update(neighbours);
+        assertFalse(cell.isAlive());
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {4, 5, 6, 7, 8})
+    void alive_again_in_contact_with_more_than_3_alive(int numberOfAliveNeighbours) {
+        when(neighbours.numberOfAlive()).thenReturn(numberOfAliveNeighbours);
+        Cell cell = new Cell(false);
+        cell.update(neighbours);
+        assertTrue(cell.isAlive());
+    }
 }
 
