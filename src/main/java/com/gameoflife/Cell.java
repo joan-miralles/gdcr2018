@@ -6,7 +6,14 @@ public class Cell {
         return CellStatus.ALIVE;
     }
 
+    public NeighboursCells getNeighbours() {
+        return new NeighboursCells();
+    }
+
     public enum CellStatus {
         ALIVE
+    }
+
+    class NeighboursCells {
     }
 }
