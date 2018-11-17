@@ -3,9 +3,11 @@ package com.gameoflife;
 public class Cell {
 
     private CellStatus liveStatus;
+    private NeighboursCells neighboursCells;
 
-    public Cell(CellStatus liveStatus) {
+    public Cell(CellStatus liveStatus, NeighboursCells neighboursCells) {
         this.liveStatus = liveStatus;
+        this.neighboursCells = neighboursCells;
     }
 
     public CellStatus getLiveStatus() {
@@ -13,11 +15,15 @@ public class Cell {
     }
 
     public NeighboursCells getNeighbours() {
-        return new NeighboursCells();
+        return neighboursCells;
     }
 
     public void update() {
-        this.liveStatus = CellStatus.DIED;
+        if (neighboursCells.numberOfAliveCells() < 2) {
+            this.liveStatus = CellStatus.DIED;
+        } else {
+            this.liveStatus = CellStatus.ALIVE;
+        }
     }
 
     public enum CellStatus {
@@ -25,6 +31,4 @@ public class Cell {
         DIED
     }
 
-    class NeighboursCells {
-    }
 }
